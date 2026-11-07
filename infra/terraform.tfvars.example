@@ -1,0 +1,6 @@
+region = "eu-west-1"
+vpc_id = "vpc-REPLACE"
+private_subnet_ids = ["subnet-REPLACE-A", "subnet-REPLACE-B"]
+image_uri = "123456789012.dkr.ecr.eu-west-1.amazonaws.com/insurance-analytics@sha256:REPLACE_WITH_64_HEX_DIGEST"
+artifact_bucket_name = "REPLACE-WITH-GLOBALLY-UNIQUE-NAME"
+dashboard_desired_count = 0

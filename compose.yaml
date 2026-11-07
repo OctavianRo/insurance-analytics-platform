@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+  dashboard:
+    build: .
+    command: ["insurance-analytics", "dashboard", "--host", "0.0.0.0"]
+    ports: ["127.0.0.1:8050:8050"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]

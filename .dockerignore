@@ -1,0 +1,8 @@
+.git
+.venv
+artifacts
+.metaflow
+mlruns
+*.db
+.env
+__pycache__

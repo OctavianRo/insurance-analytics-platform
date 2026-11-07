@@ -1,0 +1,62 @@
+name: Validate analytics
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install '.[dev]' 'xgboost>=3,<4'
+      - run: ruff check src tests workflows
+      - run: ruff format --check src tests workflows
+      - run: python -m pytest -q
+      - run: insurance-analytics demo --output artifacts/logistic
+      - run: insurance-analytics demo --backend xgboost --output artifacts/xgboost
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-studies-${{ matrix.python }}
+          path: artifacts/
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.14.0'
+      - run: terraform fmt -check -recursive
+        working-directory: infra
+      - run: terraform init -backend=false
+        working-directory: infra
+      - run: terraform validate
+        working-directory: infra
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t insurance-analytics:test .
+      - run: docker run --rm insurance-analytics:test insurance-analytics demo --output /tmp/study
+
+  workflows:
+    runs-on: ubuntu-latest
+    env:
+      METAFLOW_USER: insurance-demo
+      DO_NOT_TRACK: '1'
+      MLFLOW_DISABLE_AGENT_HINT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install '.[ml]'
+      - run: python workflows/underwriting_flow.py run --backend logistic
+      - run: python workflows/underwriting_flow.py run --backend xgboost
+      - run: python workflows/monitoring_flow.py run

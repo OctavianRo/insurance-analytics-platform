@@ -1,0 +1,5 @@
+{
+  "applicants": [
+    {"age": 40, "bmi": 25.0, "smoker": 0, "rx_count": 1, "a1c": 5.4, "channel": "broker"}
+  ]
+}

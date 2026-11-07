@@ -1,0 +1,65 @@
+{
+  "data_source": "synthetic",
+  "seed": 42,
+  "impairment": {
+    "n": 600,
+    "prevalence": 0.165,
+    "roc_auc": 0.78128591302244,
+    "average_precision": 0.467360339638522,
+    "brier": 0.11396250629658655,
+    "backend": "xgboost",
+    "target": "impaired",
+    "holdout_start": "2024-04-10 00:00:00",
+    "training_rows": 2400
+  },
+  "acceleration": {
+    "n": 600,
+    "prevalence": 0.15,
+    "roc_auc": 0.6223965141612201,
+    "average_precision": 0.2286332716258097,
+    "brier": 0.12500065667456808,
+    "backend": "xgboost",
+    "target": "requires_full_review",
+    "holdout_start": "2024-04-10 00:00:00",
+    "training_rows": 2400
+  },
+  "acceleration_policy": {
+    "threshold": 0.1,
+    "candidate_rate": 0.21333333333333335,
+    "candidates": 128,
+    "rows": 600,
+    "missed_review_rate_among_candidates": 0.0703125
+  },
+  "mortality": {
+    "exposure": 2203.8917269867,
+    "deaths": 19.0,
+    "expected_deaths": 18.3938825259,
+    "actual_claims": 11853000.0,
+    "expected_claims": 9528604.960157644,
+    "ae_count": 1.0329521227,
+    "ae_amount": 1.243938651,
+    "ae_lower": 0.6219046549,
+    "ae_upper": 1.6130826937
+  },
+  "term_apv_per_unit": 0.06188353237241027,
+  "survival_holdout_concordance": 0.7839237466226359,
+  "embedding": {
+    "initial_loss": 0.02973990899615367,
+    "final_loss": 0.02973987996640263,
+    "holdout_actual": 7,
+    "holdout_predicted": 5.211089254430526
+  },
+  "study_ingestion": {
+    "source_sha256": "ff8a054a6b951362e28fcbb66df57fbf8632270ae5be2b2f23f8679cce4d21cb",
+    "input_rows": 3,
+    "accepted_rows": 2,
+    "rejected_rows": 1,
+    "study_start": "2025-01-01",
+    "study_end_exclusive": "2026-01-01",
+    "exposure": 1.5030800821355235,
+    "deaths": 1
+  },
+  "new_decision_deltas": 0,
+  "drift_alerts": 2,
+  "differential_review_flags": 0
+}
