@@ -1,6 +1,6 @@
 # Insurance Analytics Platform
 
-An independent, runnable implementation of the life and health insurance analytics projects described in a supplied professional profile. It covers the path from study ingestion and underwriting models to mortality analysis, monitoring, reporting, and cloud execution.
+An independent, runnable implementation of the life and health insurance analytics projects. It covers the path from study ingestion and underwriting models to mortality analysis, monitoring, reporting, and cloud execution.
 
 **All examples use generated, fictional data and illustrative assumptions.** This repository contains no employer code, client records, proprietary mortality tables, or claims of reproducing an employer’s systems or business results. Models are research demonstrations for human review, not validated insurance decision systems.
 
